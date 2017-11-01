@@ -6,13 +6,14 @@ public class Main {
         // write your code here
         Tractor tractor = new Tractor();
        print(tractor);
+        tractor.move("I");
+       tractor.move("F");
         tractor.move("F");
         tractor.move("F");
         tractor.move("F");
         tractor.move("F");
-        tractor.move("F");
+      //  tractor.move("F");
         print(tractor);
-
     }
     public static void print(Tractor tractor){
         System.out.println(tractor.getPositionX());

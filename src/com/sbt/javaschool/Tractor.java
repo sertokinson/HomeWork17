@@ -1,60 +1,30 @@
 package com.sbt.javaschool;
 
 public class Tractor {
-
-    int[] position = new int[]{0, 0};
-    int[] field = new int[]{5, 5};
-    Orientation orientation = Orientation.NORTH;
+    private Position position = new Position(0, 0);
+     Orientation orientation = Orientation.NORTH;
 
     public void move(String command) {
-        if (command == "F") {
+        if (command.equals("F"))
             moveForwards();
-        } else if (command == "T") {
+        if (command.equals("I"))
             turnClockwise();
         }
-    }
 
     private void moveForwards() {
-        switch (orientation) {
-            case NORTH:
-                position[1]+=1;
-                break;
-            case EAST:
-                position[0]+=1;
-                break;
-            case WEST:
-                position[0]-=1;
-                break;
-            case SOUTH:
-                position[1]-=1;
-        }
-        if (position[0] > field[0] || position[1] > field[1]) {
-            throw new TractorInDitchException();
-        }
+        position = orientation.move(position);
     }
 
     private void turnClockwise() {
-        switch (orientation) {
-            case NORTH:
-                orientation = Orientation.EAST;
-                break;
-            case EAST:
-                orientation = Orientation.SOUTH;
-                break;
-            case WEST:
-                orientation = Orientation.NORTH;
-                break;
-            case SOUTH:
-                orientation = Orientation.WEST;
-        }
+        orientation = orientation.turn();
     }
 
     public int getPositionX() {
-        return position[0];
+        return position.getX();
     }
 
     public int getPositionY() {
-        return position[1];
+        return position.getY();
     }
 
     public Orientation getOrientation() {
